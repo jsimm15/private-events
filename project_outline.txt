@@ -1,0 +1,16 @@
+Models:
+
+class Event
+  has_one :creator, through :event_lists, class_name: "User"
+  has_one :event_list
+  has_many :attendees, through: :event_lists, class_name: "User"
+end
+
+class EventLists 
+  belongs_to :Event
+  belongs_to  :User
+end
+
+class User
+  has_many :attended_events, through: :event_lists, foreign_key: "event_id"
+end
